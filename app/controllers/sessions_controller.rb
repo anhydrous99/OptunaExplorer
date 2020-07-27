@@ -18,14 +18,10 @@ class SessionsController < ApplicationController
     session[:password] = params[:password]
     session[:database] = params[:database]
     session[:logged_in] = true
+    redirect_to root_path
   end
 
   def destroy
     reset_session
-    session[:logged_in] = false
-  end
-
-  def index
-    render 'new' unless session[:logged_in]
   end
 end
