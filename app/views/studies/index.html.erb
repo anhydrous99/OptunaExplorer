@@ -1,31 +1,33 @@
 <p id="notice"><%= notice %></p>
 
+
+<div class="container">
+
 <h1>Studies</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Study</th>
-      <th>Study name</th>
-      <th>Direction</th>
-      <th colspan="3"></th>
+      <th scope="col">Id</th>
+      <th scope="col">Study Name</th>
+      <th scope="col">Direction</th>
+      <th scope="col" colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @studies.each do |study| %>
       <tr>
-        <td><%= study.study_id %></td>
+        <th scope="row"><%= study.study_id %></th>
         <td><%= study.study_name %></td>
         <td><%= study.direction %></td>
-        <td><%= link_to 'Show', study %></td>
-        <td><%= link_to 'Edit', edit_study_path(study) %></td>
-        <td><%= link_to 'Destroy', study, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show Details', study, class: 'btn btn-outline-dark btn-block' %></td>
+        <td><%= link_to 'Edit', edit_study_path(study), class: 'btn btn-outline-dark btn-block' %></td>
+        <td><%= link_to 'Remove', study, class: 'btn btn-outline-danger btn-block', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= link_to 'Create Study', new_study_path, class: 'btn btn-dark btn-lg btn-block' %>
 
-<br>
-
-<%= link_to 'New Study', new_study_path %>
+</div>
