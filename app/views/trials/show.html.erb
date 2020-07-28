@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Trial:</strong>
+  <%= @trial.trial_id %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @trial.number %>
+</p>
+
+<p>
+  <strong>Study:</strong>
+  <%= @trial.study_id %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @trial.state %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @trial.value %>
+</p>
+
+<p>
+  <strong>Datetime start:</strong>
+  <%= @trial.datetime_start %>
+</p>
+
+<p>
+  <strong>Datetime complete:</strong>
+  <%= @trial.datetime_complete %>
+</p>
+
+<%= link_to 'Edit', edit_trial_path(@trial) %> |
+<%= link_to 'Back', trials_path %>

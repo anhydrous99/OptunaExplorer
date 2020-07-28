@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Trials</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Trial</th>
+      <th>Number</th>
+      <th>Study</th>
+      <th>State</th>
+      <th>Value</th>
+      <th>Datetime start</th>
+      <th>Datetime complete</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trials.each do |trial| %>
+      <tr>
+        <td><%= trial.trial_id %></td>
+        <td><%= trial.number %></td>
+        <td><%= trial.study_id %></td>
+        <td><%= trial.state %></td>
+        <td><%= trial.value %></td>
+        <td><%= trial.datetime_start %></td>
+        <td><%= trial.datetime_complete %></td>
+        <td><%= link_to 'Show', trial %></td>
+        <td><%= link_to 'Edit', edit_trial_path(trial) %></td>
+        <td><%= link_to 'Destroy', trial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Trial', new_trial_path %>

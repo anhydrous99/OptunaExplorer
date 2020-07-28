@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_27_155321) do
+ActiveRecord::Schema.define(version: 2020_07_28_004019) do
 
   create_table "studies", primary_key: "study_id", force: :cascade do |t|
     t.string "study_name"
     t.string "direction"
+  end
+
+  create_table "trials", primary_key: "trial_id", force: :cascade do |t|
+    t.integer "number"
+    t.integer "study_id"
+    t.string "state"
+    t.float "value"
+    t.datetime "datetime_start"
+    t.datetime "datetime_complete"
   end
 
 end

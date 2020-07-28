@@ -10,6 +10,7 @@ class StudiesController < ApplicationController
   # GET /studies/1
   # GET /studies/1.json
   def show
+    study_id = params[:study_id]
   end
 
   # GET /studies/new

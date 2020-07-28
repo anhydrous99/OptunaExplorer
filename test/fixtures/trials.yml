@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trial_id: 
+  number: 
+  study_id: 
+  state: MyString
+  value: 1.5
+  datetime_start: 2020-07-27 19:40:19
+  datetime_complete: 2020-07-27 19:40:19
+
+two:
+  trial_id: 
+  number: 
+  study_id: 
+  state: MyString
+  value: 1.5
+  datetime_start: 2020-07-27 19:40:19
+  datetime_complete: 2020-07-27 19:40:19
