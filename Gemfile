@@ -22,7 +22,6 @@ gem 'jbuilder', '~> 2.7'
 # For bootstrap gems templates
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
-gem 'pg'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -52,6 +51,10 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+end
+
+group :production do
+  gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
