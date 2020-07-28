@@ -10,7 +10,7 @@ class StudiesController < ApplicationController
   # GET /studies/1
   # GET /studies/1.json
   def show
-    study_id = params[:study_id]
+    redirect_to list_trials_path study_id: params[:id]
   end
 
   # GET /studies/new
@@ -55,6 +55,7 @@ class StudiesController < ApplicationController
   # DELETE /studies/1
   # DELETE /studies/1.json
   def destroy
+    Trial.where(study_id: params[:id]).destroy_all
     @study.destroy
     respond_to do |format|
       format.html { redirect_to studies_url, notice: 'Study was successfully destroyed.' }

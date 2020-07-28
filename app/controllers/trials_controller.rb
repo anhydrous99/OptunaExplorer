@@ -1,5 +1,5 @@
 class TrialsController < ApplicationController
-  before_action :set_trial, only: [:show, :edit, :update, :destroy]
+  before_action :set_trial, only: [:show, :destroy]
 
   # GET /trials
   # GET /trials.json
@@ -12,43 +12,10 @@ class TrialsController < ApplicationController
   def show
   end
 
-  # GET /trials/new
-  def new
-    @trial = Trial.new
-  end
-
-  # GET /trials/1/edit
-  def edit
-  end
-
-  # POST /trials
-  # POST /trials.json
-  def create
-    @trial = Trial.new(trial_params)
-
-    respond_to do |format|
-      if @trial.save
-        format.html { redirect_to @trial, notice: 'Trial was successfully created.' }
-        format.json { render :show, status: :created, location: @trial }
-      else
-        format.html { render :new }
-        format.json { render json: @trial.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /trials/1
-  # PATCH/PUT /trials/1.json
-  def update
-    respond_to do |format|
-      if @trial.update(trial_params)
-        format.html { redirect_to @trial, notice: 'Trial was successfully updated.' }
-        format.json { render :show, status: :ok, location: @trial }
-      else
-        format.html { render :edit }
-        format.json { render json: @trial.errors, status: :unprocessable_entity }
-      end
-    end
+  def list
+    study_id = params[:study_id]
+    @trials = Trial.where study_id: study_id
+    render 'index'
   end
 
   # DELETE /trials/1

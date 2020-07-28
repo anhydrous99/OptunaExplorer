@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<h3>Trial Details</h3>
+
+<div class="justify-content-center p-4 border">
 <p>
   <strong>Trial:</strong>
   <%= @trial.trial_id %>
@@ -34,6 +37,5 @@
   <strong>Datetime complete:</strong>
   <%= @trial.datetime_complete %>
 </p>
-
-<%= link_to 'Edit', edit_trial_path(@trial) %> |
-<%= link_to 'Back', trials_path %>
+</div>
+<%= link_to 'Back', trials_path, class: 'btn btn-dark' %>
