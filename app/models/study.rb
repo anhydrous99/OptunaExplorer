@@ -3,6 +3,6 @@ class Study < ApplicationRecord
   validates :direction, inclusion: { in: %w(MAXIMIZE MINIMIZE), message: "%{value} is not a valid input" }
 
   def get_study_id_from_name(name)
-    Study.select(:study_id).where(name: name).LIMIT(1)
+    Study.select(:study_id).where(name: name).limit(1)
   end
 end

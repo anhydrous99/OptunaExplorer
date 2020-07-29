@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 2020_07_28_004019) do
 
   create_table "studies", primary_key: "study_id", force: :cascade do |t|
-    t.string "study_name"
-    t.string "direction"
+    t.string "study_name", null: false
+    t.string "direction", null: false
   end
 
   create_table "trials", primary_key: "trial_id", force: :cascade do |t|
