@@ -7,22 +7,32 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 studies_list = [
-    ['A2C', 'MAXIMIZE'],
-    ['noname-study-85168163', 'MINIMIZE']
+    {study_name: 'A2C', direction: 'MAXIMIZE'},
+    {study_name: 'noname-study-85168163', direction: 'MINIMIZE'}
 ]
+
+studies = Study.create studies_list
 
 trials_list = [
-    [0, 1, 'COMPLETE', 270.88, '2020-07-25 06:05:48', '2020-07-25 06:29:39'],
-    [1, 1, 'COMPLETE', 271, '2020-07-25 06:05:48', '2020-07-25 06:27:47'],
-    [2, 1, 'RUNNING', nil, '2020-07-25 11:19:21', nil],
-    [3, 2, 'COMPLETE', 220, '2020-07-25 06:05:48', '2020-07-25 06:29:39'],
-    [4, 2, 'COMPLETE', 222, '2020-07-25 06:05:48', '2020-07-25 06:27:47'],
-    [5, 2, 'RUNNING', nil, '2020-07-25 11:19:21', nil]
+    {number: 0, study_id: studies[0], state: 'COMPLETE', value: 270.88, datetime_start: '2020-07-25 06:05:48', datetime_complete: '2020-07-25 06:29:39'},
+    {number: 1, study_id: studies[0], state: 'COMPLETE', value: 271, datetime_start: '2020-07-25 06:05:48', datetime_complete: '2020-07-25 06:27:47'},
+    {number: 2, study_id: studies[0], state: 'RUNNING', value: nil, datetime_start: '2020-07-25 11:19:21', datetime_complete: nil},
+    {number: 3, study_id: studies[1], state: 'COMPLETE', value: 220, datetime_start: '2020-07-25 06:05:48', datetime_complete: '2020-07-25 06:29:39'},
+    {number: 4, study_id: studies[1], state: 'COMPLETE', value: 222, datetime_start: '2020-07-25 06:05:48', datetime_complete: '2020-07-25 06:27:47'},
+    {number: 5, study_id: studies[1], state: 'RUNNING', value: nil, datetime_start: '2020-07-25 11:19:21', datetime_complete: nil}
 ]
 
-studies_list.each { |study_name, direction| Study.create study_name: study_name, direction: direction }
+trials = Trial.create trials_list
 
-trials_list.each do |number, study_id, state, value, datetime_start, datetime_complete|
-  Trial.create number: number, study_id: study_id, state: state, value: value, datetime_start: datetime_start,
-               datetime_complete: datetime_complete
-end
+trial_params_list = [
+    {trial_id: trials[0], param_name: 'n_steps', param_value: 3, distribution_json: '{"name": "CategoricalDistribution", "attributes": {"choices": [32, 64, 128, 256, 512, 1024, 2048]}}'},
+    {trial_id: trials[1], param_name: 'n_steps', param_value: 5, distribution_json: '{"name": "CategoricalDistribution", "attributes": {"choices": [32, 64, 128, 256, 512, 1024, 2048]}}'},
+    {trial_id: trials[0], param_name: 'nminibatches', param_value: 0, distribution_json: '{"name": "CategoricalDistribution", "attributes": {"choices": [1, 4, 8, 32, 64, 128]}}'},
+    {trial_id: trials[1], param_name: 'nminibatches', param_value: 0, distribution_json: '{"name": "CategoricalDistribution", "attributes": {"choices": [1, 4, 8, 32, 64, 128]}}'},
+    {trial_id: trials[0], param_name: 'lam', param_value: 0.926422, distribution_json: '{"name": "UniformDistribution", "attributes": {"low": 0.8, "high": 0.95}}'},
+    {trial_id: trials[1], param_name: 'lam', param_value: 0.826022, distribution_json: '{"name": "UniformDistribution", "attributes": {"low": 0.8, "high": 0.95}}'},
+    {trial_id: trials[0], param_name: 'learning_rate', param_value: 0.000822166, distribution_json: '{"name": "LogUniformDistribution", "attributes": {"low": 0.0003, "high": 0.001}}'},
+    {trial_id: trials[1], param_name: 'learning_rate', param_value: 0.000982609, distribution_json: '{"name": "LogUniformDistribution", "attributes": {"low": 0.0003, "high": 0.001}}'}
+]
+
+trial_params = TrialParam.create trial_params_list

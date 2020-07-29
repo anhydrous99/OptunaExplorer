@@ -3,7 +3,7 @@ class CreateTrials < ActiveRecord::Migration[6.0]
     create_table :trials, {:id => false} do |t|
       t.primary_key :trial_id
       t.integer :number
-      t.integer :study_id
+      t.references :study, null: false, foreign_key: true
       t.string :state
       t.float :value
       t.datetime :datetime_start

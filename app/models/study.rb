@@ -1,4 +1,5 @@
 class Study < ApplicationRecord
+  has_many :trials
   validates :study_name, :direction, presence: true
   validates :direction, inclusion: { in: %w(MAXIMIZE MINIMIZE), message: "%{value} is not a valid input" }
 
