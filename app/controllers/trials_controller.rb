@@ -16,13 +16,13 @@ class TrialsController < ApplicationController
   def list
     study_id = params[:study_id]
     @trials = Trial.where study_id: study_id
-    render trials_url
+    render 'trials/index'
   end
 
   def set_failed
     @trial.state = 'FAIL'
     @trial.save
-    redirect_to trials_url, notice: 'Trial was successfully modified.'
+    redirect_to 'trials/index', notice: 'Trial was successfully modified.'
   end
 
   # DELETE /trials/1

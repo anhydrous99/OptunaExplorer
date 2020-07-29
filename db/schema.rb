@@ -10,11 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_29_005437) do
+ActiveRecord::Schema.define(version: 2020_07_29_193050) do
 
   create_table "studies", primary_key: "study_id", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "study_name", null: false
     t.string "direction", null: false
+  end
+
+  create_table "study_system_attributes", primary_key: "study_system_attribute_id", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "study_id", null: false
+    t.string "key"
+    t.text "value_json"
+  end
+
+  create_table "study_user_attributes", primary_key: "study_user_attribute_id", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "study_id", null: false
+    t.string "key"
+    t.text "value_json"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "trial_params", primary_key: "param_id", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -22,6 +36,24 @@ ActiveRecord::Schema.define(version: 2020_07_29_005437) do
     t.string "param_name"
     t.float "param_value"
     t.text "distribution_json"
+  end
+
+  create_table "trial_system_attributes", primary_key: "trial_system_attribute_id", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "trial_id", null: false
+    t.string "key"
+    t.text "value_json"
+  end
+
+  create_table "trial_user_attributes", primary_key: "trial_user_attribute_id", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "trial_id", null: false
+    t.string "key"
+    t.text "value_json"
+  end
+
+  create_table "trial_values", primary_key: "trial_value_id", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "trial_id", null: false
+    t.integer "step"
+    t.float "value"
   end
 
   create_table "trials", primary_key: "trial_id", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
