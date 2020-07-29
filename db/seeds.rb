@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 studies_list = [{study_name: 'A2C', direction: 'MAXIMIZE'},
-                {study_name: 'noname-study-51684', direction: 'MINIMZE'}]
+                {study_name: 'noname-study-51684', direction: 'MINIMIZE'}]
 
 studies = Study.create studies_list
 

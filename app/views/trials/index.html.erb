@@ -12,7 +12,7 @@
       <th scope="col">Value</th>
       <th scope="col">Datetime start</th>
       <th scope="col">Datetime complete</th>
-      <th scope="col" colspan="2"></th>
+      <th scope="col" colspan="3"></th>
     </tr>
   </thead>
 
@@ -27,7 +27,8 @@
         <td><%= trial.datetime_start %></td>
         <td><%= trial.datetime_complete %></td>
         <td><%= link_to 'Show', trial, class: 'btn btn-outline-dark btn-block' %></td>
-        <td><%= link_to 'Destroy', trial, class: 'btn btn-outline-dark btn-block', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Set Failed',  set_failed_trial_path(trial), class: 'btn btn-outline-warning btn-block' %></td>
+        <td><%= link_to 'Destroy', trial, class: 'btn btn-outline-danger btn-block', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
