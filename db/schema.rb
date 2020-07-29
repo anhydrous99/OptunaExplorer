@@ -12,19 +12,19 @@
 
 ActiveRecord::Schema.define(version: 2020_07_29_005437) do
 
-  create_table "studies", primary_key: "study_id", force: :cascade do |t|
+  create_table "studies", primary_key: "study_id", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "study_name", null: false
     t.string "direction", null: false
   end
 
-  create_table "trial_params", primary_key: "param_id", force: :cascade do |t|
+  create_table "trial_params", primary_key: "param_id", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "trial_id", null: false
     t.string "param_name"
     t.float "param_value"
     t.text "distribution_json"
   end
 
-  create_table "trials", primary_key: "trial_id", force: :cascade do |t|
+  create_table "trials", primary_key: "trial_id", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "number"
     t.integer "study_id", null: false
     t.string "state"
