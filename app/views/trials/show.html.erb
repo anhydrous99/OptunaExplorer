@@ -37,5 +37,32 @@
   <strong>Datetime complete:</strong>
   <%= @trial.datetime_complete %>
 </p>
+
+  <% unless @trial_params.nil? or @trial_params.empty? %>
+  <h4>Parameters</h4>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Value</th>
+        <th scope="col">Distribution Name</th>
+        <th scope="col">Distribution Attributes</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @trial_params.each do |trial_param| %>
+        <tr>
+          <td><%= trial_param.param_name %></td>
+          <td><%= trial_param.param_value %></td>
+          <% parsed = JSON.parse trial_param.distribution_json %>
+          <td><%= parsed['name'] %></td>
+          <td><%= parsed['attributes'] %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
 </div>
 <%= link_to 'Back', trials_path, class: 'btn btn-dark' %>

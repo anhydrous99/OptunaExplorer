@@ -10,6 +10,7 @@ class TrialsController < ApplicationController
   # GET /trials/1
   # GET /trials/1.json
   def show
+    @trial_params = TrialParam.where(trial_id: @trial.trial_id)
   end
 
   def list
