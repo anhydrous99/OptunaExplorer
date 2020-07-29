@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2020_07_29_005437) do
     t.string "param_name"
     t.float "param_value"
     t.text "distribution_json"
-    t.index ["trial_id"], name: "index_trial_params_on_trial_id"
   end
 
   create_table "trials", primary_key: "trial_id", force: :cascade do |t|
@@ -32,9 +31,6 @@ ActiveRecord::Schema.define(version: 2020_07_29_005437) do
     t.float "value"
     t.datetime "datetime_start"
     t.datetime "datetime_complete"
-    t.index ["study_id"], name: "index_trials_on_study_id"
   end
 
-  add_foreign_key "trial_params", "trials"
-  add_foreign_key "trials", "studies"
 end
