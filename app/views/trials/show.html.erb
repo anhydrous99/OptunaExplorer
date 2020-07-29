@@ -64,5 +64,68 @@
     </table>
   <% end %>
 
+  <% unless @trial_values.nil? or @trial_values.empty? %>
+  <h4>Trial Values</h4>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Step</th>
+        <th scope="col">Value</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @trial_values.each do | trial_value | %>
+      <tr>
+        <td><%= trial_value.step %></td>
+        <td><%= trial_value.value %></td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <% unless @trial_system_attributes.nil? or @trial_system_attributes.empty? %>
+    <h4>Trial System Attributes</h4>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Key</th>
+        <th scope="col">Value</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @trial_system_attributes.each do | attribute | %>
+        <tr>
+          <td><%= attribute.key %></td>
+          <td><%= attribute.value_json %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <% unless @trial_user_attributes.nil? or @trial_user_attributes.empty? %>
+  <h4>Trial User Attributes</h4>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Key</th>
+        <th scope="col">Value</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @trial_user_attributes.each do | attribute | %>
+      <tr>
+        <td><%= attribute.key %></td>
+        <td><%= attribute.value_json %></td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
 </div>
 <%= link_to 'Back', trials_path, class: 'btn btn-dark' %>

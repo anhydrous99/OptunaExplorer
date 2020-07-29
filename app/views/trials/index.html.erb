@@ -35,4 +35,50 @@
 </table>
 <%= link_to 'Show Studies', studies_path, class: 'btn btn-dark btn-lg' %>
 
+<% unless @study_system_attributes.nil? or @study_system_attributes.empty? %>
+  <h4>Study System Attributes</h4>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Key</th>
+      <th scope="col">Value</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @study_system_attributes.each do |attribute| %>
+    <tr>
+      <td><%= attribute.key %></td>
+      <td><%= attribute.value_json %></td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+<% end %>
+
+<% unless @study_user_attributes.nil? or @study_user_attributes.empty? %>
+  <h4>Study User Attributes</h4>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Key</th>
+      <th scope="col">Value</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @study_user_attributes.each do |attribute| %>
+    <tr>
+      <td><%= attribute.key %></td>
+      <td><%= attribute.value_json  %></td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+<% end %>
+
 <br>
