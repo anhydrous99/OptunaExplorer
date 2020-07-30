@@ -6,26 +6,16 @@
 #
 
 development:
-  adapter: mysql2
+  adapter: sqlite3
+  database: db/development.sqlite3
   pool: 5
-  encoding: utf8
-  reconnect: false
-  host: 35.226.18.113
-  username: railsuser
-  password: s1S@2i4T6zgfD8aq
-  database: optunaexplorerdb_development
-  socket: /tmp/mysql.sock
+  timeout: 5000
 
 test:
-  adapter: mysql2
+  adapter: sqlite3
+  database: db/test.sqlite3
   pool: 5
-  encoding: utf8
-  reconnect: false
-  host: 35.226.18.113
-  username: railsuser
-  password: s1S@2i4T6zgfD8aq
-  database: optunaexplorerdb_test
-  socket: /tmp/mysql.sock
+  timeout: 5000
 
 production:
   adapter: mysql2
