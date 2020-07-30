@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :users
+  devise_for :users
+  get 'home/index'
   resources :trials, only: [:index, :show, :destroy] do
     get :list, path: ':study_id/list/', on: :collection
     get :set_failed, on: :member
@@ -8,4 +9,6 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+
+  root to: 'home#index'
 end

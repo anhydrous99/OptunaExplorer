@@ -25,6 +25,8 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 # Multi-tenancy of users
 gem 'apartment', github: 'influitive/apartment', branch: 'development'
+# For the user authentication
+gem 'devise'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
