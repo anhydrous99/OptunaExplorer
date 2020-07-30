@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   get 'home/index'
   resources :trials, only: [:index, :show, :destroy] do
     get :list, path: ':study_id/list/', on: :collection
