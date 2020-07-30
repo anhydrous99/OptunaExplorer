@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_29_193050) do
+ActiveRecord::Schema.define(version: 2020_07_30_004548) do
 
   create_table "studies", primary_key: "study_id", force: :cascade do |t|
     t.string "study_name", null: false
@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(version: 2020_07_29_193050) do
     t.float "value"
     t.datetime "datetime_start"
     t.datetime "datetime_complete"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "subdomain"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["subdomain"], name: "index_users_on_subdomain", unique: true
   end
 
 end
