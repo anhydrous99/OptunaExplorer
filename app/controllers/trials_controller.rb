@@ -1,6 +1,7 @@
 class TrialsController < ApplicationController
   before_action :set_trial, only: [:show, :set_failed, :destroy]
   before_action :authenticate_user!
+  before_action :ensure_subdomain_trials
 
   # GET /trials
   # GET /trials.json
@@ -39,6 +40,14 @@ class TrialsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to trials_url, notice: 'Trial was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  protected def ensure_subdomain_trials
+    if user_signed_in?
+      if request.subdomain != current_user['username']
+        redirect_to subdomain: current_user['username']
+      end
     end
   end
 

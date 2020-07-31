@@ -1,6 +1,7 @@
 class StudiesController < ApplicationController
   before_action :set_study, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :ensure_subdomain_studies
 
   # GET /studies
   # GET /studies.json
@@ -61,6 +62,14 @@ class StudiesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to studies_url, notice: 'Study was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  protected def ensure_subdomain_studies
+    if user_signed_in?
+      if request.subdomain != current_user['username']
+        redirect_to subdomain: current_user['username']
+      end
     end
   end
 
