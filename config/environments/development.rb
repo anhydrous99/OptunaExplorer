@@ -62,4 +62,7 @@ Rails.application.configure do
 
   # For use with the Devise gem
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # Development hostname -- for multi-tenancy
+  config.hosts.clear
 end
