@@ -1,4 +1,4 @@
-<%= form_with(model: study, local: true, html: { class: 'border p-4 col-md-4 justify-content-center' }) do |form| %>
+<%= form_with(model: study, local: true, html: { class: 'border p-10 col-md-10 justify-content-center' }) do |form| %>
   <% if study.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(study.errors.count, "error") %> prohibited this study from being saved:</h2>
@@ -22,6 +22,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-dark btn-block' %>
   </div>
+  <br>
 <% end %>

@@ -1,5 +1,6 @@
 class TrialsController < ApplicationController
   before_action :set_trial, only: [:show, :set_failed, :destroy]
+  before_action :authenticate_user!
 
   # GET /trials
   # GET /trials.json
