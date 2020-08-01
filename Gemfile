@@ -27,6 +27,8 @@ gem 'jquery-rails'
 gem 'apartment', github: 'influitive/apartment', branch: 'development'
 # For the user authentication
 gem 'devise'
+# For the captcha
+gem 'recaptcha', require: 'recaptcha/rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
