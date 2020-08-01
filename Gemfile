@@ -29,6 +29,8 @@ gem 'apartment', github: 'influitive/apartment', branch: 'development'
 gem 'devise'
 # For the captcha
 gem 'recaptcha', require: 'recaptcha/rails'
+# App Engine Integrations
+gem 'appengine'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

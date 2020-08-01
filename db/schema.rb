@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_30_143831) do
+ActiveRecord::Schema.define(version: 2020_08_01_201925) do
 
   create_table "studies", primary_key: "study_id", force: :cascade do |t|
     t.string "study_name", null: false
@@ -75,6 +75,11 @@ ActiveRecord::Schema.define(version: 2020_07_30_143831) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
+  create_table "version_info", primary_key: "version_info_id", force: :cascade do |t|
+    t.integer "schema_version"
+    t.string "library_version"
   end
 
 end

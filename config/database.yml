@@ -20,10 +20,8 @@ test:
 production:
   adapter: mysql2
   pool: 5
-  encoding: utf8
-  reconnect: false
-  host: 35.226.18.113
-  username: railsuser
-  password: s1S@2i4T6zgfD8aq
-  database: optunaexplorerdb_production
-  socket: /tmp/mysql.sock
+  timeout: 5000
+  username: "root"
+  password: "rm6ywDKJBmEqP1cd"
+  database: "prime"
+  socket: "/cloudsql/conductive-air-262908:us-central1:optunadb"

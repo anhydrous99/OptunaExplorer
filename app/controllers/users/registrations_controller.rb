@@ -18,7 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       username = sign_up_params['username']
       password = sign_up_params['password']
       create_sql = "CREATE USER '#{username}' IDENTIFIED BY '#{password}';"
-      rights_sql = "GRANT ALL PRIVILEGES ON #{username}.* TO '#{username}'"
+      rights_sql = "GRANT DELETE INSERT SELECT UPDATE ON #{username}.* TO '#{username}'"
       ActiveRecord::Base.connection.execute create_sql
       ActiveRecord::Base.connection.execute rights_sql
     end
