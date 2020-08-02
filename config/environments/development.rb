@@ -64,5 +64,6 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Development hostname -- for multi-tenancy
+  Rails.application.config.session_store :cookie_store, key: '_OptunaExplorer_session', domain: 'localtest.me'
   config.hosts.clear
 end
