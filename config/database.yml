@@ -23,6 +23,6 @@ production:
   timeout: 5000
   encoding: utf8
   username: "root"
-  password: "rm6ywDKJBmEqP1cd"
-  database: "prime"
-  host: 35.222.201.183
+  password: "9nV#14Tw"
+  database: "optunaexplorer"
+  host: "localhost"
