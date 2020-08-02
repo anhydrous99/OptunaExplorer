@@ -29,8 +29,6 @@ gem 'apartment', github: 'influitive/apartment', branch: 'development'
 gem 'devise'
 # For the captcha
 gem 'recaptcha', require: 'recaptcha/rails'
-# App Engine Integrations
-gem 'appengine'
 # Deployment gems
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'
