@@ -17,13 +17,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if Rails.env.production?
       username = sign_up_params['username']
       password = sign_up_params['password']
-      create_sql = <<-SQL
+      VersionInfo.execute <<-SQL
 CREATE USER '#{username}' IDENTIFIED BY '#{password}';
 GRANT DELETE, INSERT, SELECT, UPDATE ON `#{username}` TO '#{username}';
 ALTER USER '#{username}' WITH MAX_QUERIES_PER_HOUR 60;
 FLUSH PRIVILEGES;
 SQL
-      ActiveRecord::Base.connection.execute create_sql
     end
   end
 
