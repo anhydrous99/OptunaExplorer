@@ -24,23 +24,13 @@ set :deploy_to, "/home/deploy/#{fetch :application}"
 #append :linked_files, "config/database.yml"
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", 'vendor/bundle', "public/system",
-       '.bundle', 'public/uploads'
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
-
-# Defaults to :db role
-set :migration_role, :db
-
-# Defaults to the primary :db server
-set :migration_servers, -> { primary(fetch(:migration_role)) }
-
-# Defaults to `db:migrate`
-set :migration_command, 'db:migrate'
 
 # Defaults to false
 # Skip migration if files in db/migrate were not modified
