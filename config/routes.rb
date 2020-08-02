@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :ip_addresses, only: [:index, :new, :create, :destroy]
   # Add the routes for devise
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
