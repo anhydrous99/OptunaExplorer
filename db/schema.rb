@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_01_201925) do
+ActiveRecord::Schema.define(version: 2020_08_02_012021) do
+
+  create_table "ip_addresses", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "ip_address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "studies", primary_key: "study_id", force: :cascade do |t|
     t.string "study_name", null: false

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Whitelisted Ip Addresses</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Ip Address</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ip_addresses.each_with_index do |ip_address, idx| %>
+      <tr>
+        <th scope="row"><%= idx + 1 %></th>
+        <td><%= ip_address.ip_address %></td>
+        <td><%= link_to 'Delete', ip_address, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-dark' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ip Address', new_ip_address_path, class: 'btn btn-dark' %>
+<%= link_to 'Back to Studies', studies_path, class: 'btn btn-dark' %>
+<%= link_to "Back", :back, class: 'btn btn-dark' %>

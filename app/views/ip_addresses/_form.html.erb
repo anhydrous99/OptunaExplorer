@@ -1,0 +1,22 @@
+<%= form_with(model: ip_address, local: true) do |form| %>
+  <% if ip_address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ip_address.errors.count, "error") %> prohibited this ip_address from being saved:</h2>
+
+      <ul>
+        <% ip_address.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ip_address %>
+    <%= form.text_field :ip_address %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Add Ip Address', class: 'btn btn-dark' %>
+  </div>
+<% end %>
