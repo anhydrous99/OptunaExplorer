@@ -19,6 +19,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       password = sign_up_params['password']
       VersionInfo.execute <<-SQL
 CREATE USER '#{username}' IDENTIFIED BY '#{password}';
+SQL
+      VersionInfo.execute <<-SQL
 GRANT DELETE, INSERT, SELECT, UPDATE ON `#{username}` TO '#{username}';
 ALTER USER '#{username}' WITH MAX_QUERIES_PER_HOUR 60;
 FLUSH PRIVILEGES;
