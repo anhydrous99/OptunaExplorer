@@ -21,7 +21,7 @@ set :deploy_to, "/home/deploy/#{fetch :application}"
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/database.yml"
+#append :linked_files, "config/database.yml"
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", 'vendor/bundle', "public/system",
@@ -32,6 +32,19 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", 'vendor/bund
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
+
+# Defaults to :db role
+set :migration_role, :db
+
+# Defaults to the primary :db server
+set :migration_servers, -> { primary(fetch(:migration_role)) }
+
+# Defaults to `db:migrate`
+set :migration_command, 'db:migrate'
+
+# Defaults to false
+# Skip migration if files in db/migrate were not modified
+set :conditionally_migrate, true
 
 # Default value for keep_releases is 5
 set :keep_releases, 5
