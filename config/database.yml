@@ -21,7 +21,8 @@ production:
   adapter: mysql2
   pool: 5
   timeout: 5000
+  encoding: utf8
   username: "root"
   password: "rm6ywDKJBmEqP1cd"
   database: "prime"
-  socket: "/cloudsql/conductive-air-262908:us-central1:optunadb"
+  host: 35.222.201.183
