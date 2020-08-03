@@ -22,7 +22,7 @@ production:
   pool: 5
   timeout: 5000
   encoding: utf8
-  username: "root"
-  password: "9nV#14Tw"
-  database: "optunaexplorer"
+  username: "deploy"
+  password: "eeQstj5b9K"
+  database: "optunadb"
   host: "localhost"
