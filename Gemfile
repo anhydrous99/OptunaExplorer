@@ -29,12 +29,6 @@ gem 'apartment', github: 'influitive/apartment', branch: 'development'
 gem 'devise'
 # For the captcha
 gem 'recaptcha', require: 'recaptcha/rails'
-# Deployment gems
-gem 'capistrano', '~> 3.11'
-gem 'capistrano-rails', '~> 1.4'
-gem 'capistrano-passenger', '~> 0.2.0'
-gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
-gem 'capistrano-yarn'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
