@@ -5,8 +5,8 @@ ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
-# Use Puma as the app server
-gem 'puma', '~> 4.1'
+# Use Passenger as the app server
+gem 'passenger'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -29,12 +29,6 @@ gem 'apartment', github: 'influitive/apartment', branch: 'development'
 gem 'devise'
 # For the captcha
 gem 'recaptcha', require: 'recaptcha/rails'
-# Deployment gems
-gem 'capistrano', '~> 3.11'
-gem 'capistrano-rails', '~> 1.4'
-gem 'capistrano-passenger', '~> 0.2.0'
-gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
-gem 'capistrano-yarn'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
