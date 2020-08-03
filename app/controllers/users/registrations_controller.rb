@@ -17,14 +17,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if Rails.env.production?
       username = sign_up_params['username']
       password = sign_up_params['password']
-      VersionInfo.execute <<-SQL
-CREATE USER '#{username}' IDENTIFIED BY '#{password}';
-SQL
-      VersionInfo.execute <<-SQL
-GRANT DELETE, INSERT, SELECT, UPDATE ON `#{username}`.* TO '#{username}';
-ALTER USER '#{username}' WITH MAX_QUERIES_PER_HOUR 60;
-FLUSH PRIVILEGES;
-SQL
+      ActiveRecord::Base.connection.exec_query "CREATE USER '#{username}'@'localhost' IDENTIFIED BY '#{password}';"
+      ActiveRecord::Base.connection.exec_query "GRANT DELETE, INSERT, SELECT, UPDATE ON #{username}.* TO '#{username}'@'localhost';"
+      ActiveRecord::Base.connection.exec_query "ALTER USER '#{username}'@'localhost' WITH MAX_QUERIES_PER_HOUR 60;"
+      ActiveRecord::Base.connection.exec_query "FLUSH PRIVILEGES;"
     end
   end
 
@@ -42,8 +38,7 @@ SQL
   def destroy
     if Rails.env.production?
       username = resource[:username]
-      destroy_sql = "DROP USER '#{username}'"
-      ActiveRecord::Base.connection.execute destroy_sql
+      ActiveRecord::Base.connection.exec_query "DROP USER '#{username}'@'localhost';"
     end
 
     super
