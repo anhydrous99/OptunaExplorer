@@ -65,7 +65,7 @@ Rails.application.configure do
       address: 'smtp.gmail.com',
       port: 587,
       domain: 'optunaexplorer.com',
-      user_name: 'armando.herrera',
+      user_name: 'armando.herrera@optunaexplorer.com',
       password: 'ixfjkmpplqubafum',
       authentication: 'plain',
       enable_starttls_auto: true
