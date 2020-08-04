@@ -35,8 +35,7 @@ class TrialsController < ApplicationController
   # DELETE /trials/1
   # DELETE /trials/1.json
   def destroy
-    TrialParam.where(trial_id: @trial).destroy_all
-    @trial.destroy
+    @trial.destroy_sub
     respond_to do |format|
       format.html { redirect_to trials_url, notice: 'Trial was successfully destroyed.' }
       format.json { head :no_content }

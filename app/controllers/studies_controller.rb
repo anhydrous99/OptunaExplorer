@@ -57,8 +57,7 @@ class StudiesController < ApplicationController
   # DELETE /studies/1
   # DELETE /studies/1.json
   def destroy
-    Trial.where(study_id: params[:id]).destroy_all
-    @study.destroy
+    @study.destroy_sub
     respond_to do |format|
       format.html { redirect_to studies_url, notice: 'Study was successfully destroyed.' }
       format.json { head :no_content }
