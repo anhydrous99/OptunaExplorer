@@ -32,6 +32,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/config/credentials.yml.enc
 
 /public/packs
 /public/packs-test
@@ -39,3 +40,7 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+Passengerfile.json
+passenger.80.pid
+passenger.80.pid.lock
