@@ -18,9 +18,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       username = sign_up_params['username']
       password = sign_up_params['password']
       ActiveRecord::Base.connection.exec_query "CREATE USER '#{username}'@'localhost' IDENTIFIED BY '#{password}';"
-      ActiveRecord::Base.connection.exec_query "GRANT DELETE, INSERT, SELECT, UPDATE ON #{username}.* TO '#{username}'@'localhost';"
-      ActiveRecord::Base.connection.exec_query "ALTER USER '#{username}'@'localhost' WITH MAX_QUERIES_PER_HOUR 60;"
-      ActiveRecord::Base.connection.exec_query "FLUSH PRIVILEGES;"
     end
   end
 

@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   # Add the routes for devise
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users, controllers: {
+      registrations: 'users/registrations',
+      confirmations: 'users/confirmations'
+  }
 
   # Add an extra route for sign_out, redirect_to turns the delete to get
   devise_scope :user do
