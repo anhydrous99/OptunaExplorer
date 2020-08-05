@@ -17,7 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if Rails.env.production?
       username = sign_up_params['username']
       password = sign_up_params['password']
-      ActiveRecord::Base.connection.exec_query "CREATE USER '#{username}'@'localhost' IDENTIFIED BY '#{password}';"
+      ActiveRecord::Base.connection.exec_query "CREATE USER '#{username}'@'%' IDENTIFIED BY '#{password}';"
     end
   end
 
@@ -35,7 +35,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def destroy
     if Rails.env.production?
       username = resource[:username]
-      ActiveRecord::Base.connection.exec_query "DROP USER '#{username}'@'localhost';"
+      ActiveRecord::Base.connection.exec_query "DROP USER '#{username}'@'%';"
     end
 
     super

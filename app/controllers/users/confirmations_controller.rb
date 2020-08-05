@@ -16,8 +16,8 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     super
     if Rails.env.production? and resource.errors.empty?
       username = resource[:username]
-      ActiveRecord::Base.connection.exec_query "GRANT DELETE, INSERT, SELECT, UPDATE ON #{username}.* TO '#{username}'@'localhost';"
-      ActiveRecord::Base.connection.exec_query "ALTER USER '#{username}'@'localhost' WITH MAX_QUERIES_PER_HOUR 60;"
+      ActiveRecord::Base.connection.exec_query "GRANT DELETE, INSERT, SELECT, UPDATE ON #{username}.* TO '#{username}'@'%';"
+      ActiveRecord::Base.connection.exec_query "ALTER USER '#{username}'@'%' WITH MAX_QUERIES_PER_HOUR 40;"
       ActiveRecord::Base.connection.exec_query "FLUSH PRIVILEGES;"
     end
   end
