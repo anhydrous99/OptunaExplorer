@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/index'
   # Add the routes for devise
   devise_for :users, controllers: {
       registrations: 'users/registrations',
@@ -18,5 +19,5 @@ Rails.application.routes.draw do
   # Add the routes for the studies controller
   resources :studies
 
-  root to: 'studies#index'
+  root to: 'home#index'
 end

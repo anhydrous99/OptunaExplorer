@@ -1,7 +1,5 @@
 class TrialsController < ApplicationController
-  before_action :set_trial, only: [:show, :set_failed, :destroy]
-  before_action :authenticate_user!
-  before_action :ensure_subdomain_trials
+  before_action :authenticate_user!, :ensure_subdomain, :set_trial, only: [:show, :set_failed, :destroy]
 
   # GET /trials
   # GET /trials.json
@@ -42,7 +40,9 @@ class TrialsController < ApplicationController
     end
   end
 
-  protected def ensure_subdomain_trials
+  private
+
+  def ensure_subdomain
     if user_signed_in?
       if request.subdomain != current_user['username']
         redirect_to subdomain: current_user['username']
@@ -50,14 +50,13 @@ class TrialsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_trial
-      @trial = Trial.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_trial
+    @trial = Trial.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def trial_params
-      params.require(:trial).permit(:trial_id, :number, :study_id, :state, :value, :datetime_start, :datetime_complete)
-    end
+  # Only allow a list of trusted parameters through.
+  def trial_params
+    params.require(:trial).permit(:trial_id, :number, :study_id, :state, :value, :datetime_start, :datetime_complete)
+  end
 end

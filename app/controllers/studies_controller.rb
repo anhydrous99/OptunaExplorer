@@ -1,7 +1,5 @@
 class StudiesController < ApplicationController
-  before_action :set_study, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
-  before_action :ensure_subdomain_studies
+  before_action :authenticate_user!, :ensure_subdomain, :set_study, only: [:show, :edit, :update, :destroy]
 
   # GET /studies
   # GET /studies.json
@@ -64,7 +62,9 @@ class StudiesController < ApplicationController
     end
   end
 
-  protected def ensure_subdomain_studies
+  private
+
+  def ensure_subdomain
     if user_signed_in?
       if request.subdomain != current_user['username']
         redirect_to subdomain: current_user['username']
@@ -72,14 +72,13 @@ class StudiesController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_study
-      @study = Study.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_study
+    @study = Study.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def study_params
-      params.require(:study).permit(:study_id, :study_name, :direction)
-    end
+  # Only allow a list of trusted parameters through.
+  def study_params
+    params.require(:study).permit(:study_id, :study_name, :direction)
+  end
 end
