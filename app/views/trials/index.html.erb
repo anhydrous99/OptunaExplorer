@@ -1,6 +1,17 @@
 
 <h1>Trials</h1>
 
+<% unless @current_best_trial.nil? or @current_best_trial.value.nil? %>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Best Trial</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Trial #<%= @current_best_trial.trial_id %>></h6>
+      <p class="card-text">Value: <%= @current_best_trial.value %></p>
+      <%= link_to 'Show', @current_best_trial, class: 'card-link' %>
+    </div>
+  </div>
+<% end %>
+
 <table class="table">
   <thead>
     <tr>
