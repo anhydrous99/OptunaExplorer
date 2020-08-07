@@ -1,0 +1,2 @@
+class AlembicVersion < ApplicationRecord
+end
