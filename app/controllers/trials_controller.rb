@@ -6,6 +6,8 @@ class TrialsController < ApplicationController
   # GET /trials.json
   def index
     @trials = Trial.all
+    @study_system_attributes = StudySystemAttribute.all
+    @study_user_attributes = StudyUserAttribute.all
   end
 
   # GET /trials/1
