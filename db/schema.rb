@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_07_201155) do
-
-  create_table "alembic_versions", primary_key: "alembic_version_pkc", force: :cascade do |t|
-    t.string "version_num"
-  end
+ActiveRecord::Schema.define(version: 2020_08_01_201925) do
 
   create_table "studies", primary_key: "study_id", force: :cascade do |t|
     t.string "study_name", null: false
