@@ -8,9 +8,6 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-//= require jquery3
-//= require popper
-//= require boostrap-sprockets
 //= require prism
 //= require prism-atom-dark
 //= require prism-python
