@@ -32,7 +32,6 @@
     <% end %>
   </tbody>
 </table>
-<%= link_to 'Show Studies', studies_path, class: 'btn btn-dark btn-lg' %>
 
 <% unless @study_system_attributes.nil? or @study_system_attributes.empty? %>
   <h4>Study System Attributes</h4>
@@ -81,5 +80,3 @@
 <% end %>
 
 <br>
-
-<%= render "layouts/signed_in_links" %>

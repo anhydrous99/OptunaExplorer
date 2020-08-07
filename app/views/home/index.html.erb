@@ -1,2 +1,22 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<main role="main" class="container">
+  <div class="jumbotron col-md-10">
+    <h1 class="display-4">Optuna Explorer</h1>
+    <p class="lead">A free database service for Machine Learning Developers who use the <a href="">Optuna</a> library
+    who want to distribute their hyper-parameter optimization but don't want to go through the trouble of setting
+    up a database server.</p>
+    <hr class="my-4">
+    <p>Simply sign-up, confirm your email, place the Database url in your Optuna code, and you are reading to go.</p>
+    Here is a small snippet on how to load the study using the database sql url provided:
+    <pre class="language-python"><code>import optuna
+study = optuna.load_study(study_name='study name', storage='database url')
+study.optimize(objective)</code></pre>
+    Then simply create your objective function as usual:
+    <pre class="language-python"><code>def objective(trial: optuna.Trial):
+    learning_rate = trial.suggest_loguniform('learning_rate', 3e-4, 0.001)
+    ...</code></pre>
+    Optuna will log in to the database and start optimizing. Be sure to create your study through the web interface.
+    You will be able to create, edit, and destroy studies as well that study's trials. You will be able to see that
+    studies best trial and it's parameters as well as the parameters, values, and attributes of any trial.
+  </div>
+  <%= render "layouts/support" %>
+</main>

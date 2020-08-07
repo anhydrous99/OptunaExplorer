@@ -1,5 +1,6 @@
 class StudiesController < ApplicationController
-  before_action :authenticate_user!, :ensure_subdomain, :set_study, only: [:show, :edit, :update, :destroy]
+  before_action :set_study, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_user_subdomain, :authenticate_user!
 
   # GET /studies
   # GET /studies.json
@@ -63,14 +64,6 @@ class StudiesController < ApplicationController
   end
 
   private
-
-  def ensure_subdomain
-    if user_signed_in?
-      if request.subdomain != current_user['username']
-        redirect_to subdomain: current_user['username']
-      end
-    end
-  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_study

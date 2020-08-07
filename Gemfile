@@ -27,6 +27,8 @@ gem 'apartment', github: 'influitive/apartment', branch: 'development'
 gem 'devise'
 # For the captcha
 gem 'recaptcha', require: 'recaptcha/rails'
+# For writing code
+gem 'prism-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

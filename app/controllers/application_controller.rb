@@ -17,6 +17,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def ensure_user_subdomain
+    if user_signed_in?
+      if request.subdomain != current_user['username']
+        redirect_to subdomain: current_user['username']
+      end
+    end
+  end
+
   private
 
   def render_404(_exception)

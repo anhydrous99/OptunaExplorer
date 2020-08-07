@@ -1,5 +1,6 @@
 class TrialsController < ApplicationController
-  before_action :authenticate_user!, :ensure_subdomain, :set_trial, only: [:show, :set_failed, :destroy]
+  before_action :set_trial, only: [:show, :set_failed, :destroy]
+  before_action :ensure_user_subdomain, :authenticate_user!
 
   # GET /trials
   # GET /trials.json
@@ -41,14 +42,6 @@ class TrialsController < ApplicationController
   end
 
   private
-
-  def ensure_subdomain
-    if user_signed_in?
-      if request.subdomain != current_user['username']
-        redirect_to subdomain: current_user['username']
-      end
-    end
-  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_trial
