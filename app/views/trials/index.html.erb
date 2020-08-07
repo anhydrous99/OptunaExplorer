@@ -8,7 +8,7 @@
       <h6 class="card-subtitle mb-2 text-muted">Trial #<%= @current_best_trial.number %></h6>
       <p class="card-text">Value: <%= @current_best_trial.value %></p>
       <%= link_to 'Show', @current_best_trial, class: 'card-link' %>
-      <%= link_to 'Set Failed',  set_failed_trial_path(trial), class: 'card-link text-warning' %>
+      <%= link_to 'Set Failed',  set_failed_trial_path(@current_best_trial), class: 'card-link text-warning' %>
       <%= link_to 'Destroy', @current_best_trial, class: 'card-link text-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
     </div>
   </div>
