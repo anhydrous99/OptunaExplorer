@@ -26,7 +26,7 @@ class TrialsController < ApplicationController
     @study_user_attributes = StudyUserAttribute.where study_id: study_id
 
     # Get best trial
-    @current_best_trial = @trials.children.order("value DESC").first
+    @current_best_trial = @trials.order("value DESC").first
 
     render 'trials/index'
   end
