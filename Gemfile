@@ -39,6 +39,13 @@ group :development, :test do
   gem 'sqlite3', '~> 1.4'
   # Use Puma as the app server for the development and testing environment
   gem 'puma', '~> 4.1'
+  # Test stuff
+  gem 'rspec-rails', '~> 4.0.1'
+  gem 'shoulda-matchers', '~> 4.0'
+  gem 'factory_girl_rails'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
+  gem 'coveralls', require: false
 end
 
 group :development do
