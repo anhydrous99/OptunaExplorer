@@ -72,6 +72,9 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  # Devise helpers
+  config.include Devise::Test::IntegrationHelpers, type: :model
 end
 
 # Shoulda configuration
