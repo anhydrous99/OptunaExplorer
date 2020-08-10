@@ -42,9 +42,10 @@ group :development, :test do
   # Test stuff
   gem 'rspec-rails', '~> 4.0.1'
   gem 'shoulda-matchers', '~> 4.0'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
   gem 'cucumber-rails', require: false
-  gem 'database_cleaner'
+  gem 'database_cleaner-active_record'
   gem 'coveralls', require: false
 end
 

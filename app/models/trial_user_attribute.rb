@@ -1,5 +1,6 @@
 class TrialUserAttribute < ApplicationRecord
   belongs_to :trial
+  validates :trial_id, presence: true
 
   def self.destroy_where(trial_id)
     params = where(trial_id: trial_id)
