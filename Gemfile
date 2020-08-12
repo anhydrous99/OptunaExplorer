@@ -47,6 +47,7 @@ group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner-active_record'
   gem 'coveralls', require: false
+  gem 'email_spec'
 end
 
 group :development do

@@ -5,6 +5,7 @@
 # files.
 
 require 'cucumber/rails'
+require 'email_spec/cucumber'
 
 # frozen_string_literal: true
 
@@ -33,7 +34,17 @@ ActionController::Base.allow_rescue = false
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
 begin
-  DatabaseCleaner.strategy = :transaction
+  DatabaseCleaner.strategy = :truncation
+  After do |scenario|
+    User.pluck(:username).each do |tenant|
+      Apartment::Database.drop(tenant) rescue nil
+      File.delete("db/#{tenant}.sqlite3")
+    end
+  end
+
+  Around do |scenario, block|
+    DatabaseCleaner.cleaning(&block)
+  end
 rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
 end
