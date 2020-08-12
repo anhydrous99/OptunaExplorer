@@ -6,6 +6,7 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'helpers'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -66,15 +67,28 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
+    Apartment::Tenant.drop('testuser') rescue nil
+    User.create! email: 'tst@example.com', username: 'testuser', password: 'asdfasdf', confirmed_at: Time.now
   end
-  config.around(:each) do |example|
-    DatabaseCleaner.cleaning do
-      example.run
-    end
+
+  config.after(:suite) do
+    Apartment::Tenant.drop('testuser') rescue nil
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
   end
 
   # Devise helpers
   config.include Devise::Test::IntegrationHelpers, type: :model
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Capybara::DSL
+
+  config.include Helpers
 end
 
 # Shoulda configuration

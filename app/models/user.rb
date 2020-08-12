@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :confirmable, :registerable, :recoverable, :rememberable, :validatable
   validates :username, presence: true, uniqueness: { case_sensitive: false }
-  validates_format_of :username, with: /^[a-zA-Z0-9\.]*$/, :multiline => true
+  validates_format_of :username, with: /^[a-zA-Z0-9]*$/, :multiline => true
   after_create :create_tenant
   before_destroy :destroy_tenant
 
