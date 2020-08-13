@@ -22,3 +22,5 @@ jobs:
           yarn install
       - name: Cucumber Tests
         run: cucumber
+      - name: RSpec Tests
+        run: rspec

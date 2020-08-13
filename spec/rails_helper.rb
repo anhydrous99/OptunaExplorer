@@ -68,18 +68,14 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
     Apartment::Tenant.drop('testuser') rescue nil
+    DatabaseCleaner.start
     User.create! email: 'tst@example.com', username: 'testuser', password: 'asdfasdf', confirmed_at: Time.now
   end
 
   config.after(:suite) do
-    Apartment::Tenant.drop('testuser') rescue nil
-  end
-
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
-
-  config.after(:each) do
+    User.pluck(:username).each do |tenant|
+      Apartment::Tenant.drop(tenant) rescue nil
+    end
     DatabaseCleaner.clean
   end
 
