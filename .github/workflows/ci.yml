@@ -16,6 +16,8 @@ jobs:
         uses: borales/actions-yarn@v2.0.0
         with:
           cmd: install
+      - name: Install Yarn
+        run: yarn install --check-files
       - name: Build Install
         run: bundle install --without production
       - name: Compile Assets
