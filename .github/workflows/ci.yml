@@ -18,8 +18,6 @@ jobs:
           cmd: install
       - name: Build Install
         run: bundle install --without production
-      - name: Yarn Install
-        run: rails yarn:install
       - name: Compile Assets
         run: rails assets:precompile
       - name: Cucumber Tests
