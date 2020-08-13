@@ -12,15 +12,15 @@ jobs:
         uses: actions/setup-ruby@v1
         with:
           ruby-version: 2.7.1
-      - name: Setup Yarn
-        uses: borales/actions-yarn@v2.0.0
+      - name: Setup Node
+        uses: actions/setup-node@v1
         with:
-          cmd: install
-      - name: Install Yarn
-        run: yarn install --check-files
-      - name: Build Install
-        run: bundle install --without production
-      - name: Compile Assets
-        run: rails assets:precompile
+          node-version: 10.19.0
+      - name: Install dependencies
+        run: |
+          sudo apt install -y install libsqlite3-dev build-essential
+          gem install bundler
+          bundle install --without production
+          yarn install
       - name: Cucumber Tests
         run: cucumber
