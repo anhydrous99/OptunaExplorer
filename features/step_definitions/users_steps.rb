@@ -32,6 +32,17 @@ Given 'a valid user with email {string} and password {string}' do |email, passwo
                        password: password, confirmed_at: Date.today
 end
 
+Given 'I am a valid user and am logged in' do
+  @user = User.create! username: Faker::Internet.username.gsub("_", "h").gsub(".", "a"),
+                       email: Faker::Internet.email, password: Faker::Internet.password,
+                       confirmed_at: Date.today
+  visit new_user_session_path
+  fill_in 'user_login', with: @user.username
+  fill_in 'user_password', with: @user.password
+  click_button 'Log in'
+  expect(page).to have_content 'Signed in successfully.'
+end
+
 When 'I go to the login page' do
   visit new_user_session_path
 end

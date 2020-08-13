@@ -49,4 +49,8 @@ Rails.application.configure do
 
   # For use with the Devise gem
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # Development hostname -- for multi-tenancy
+  Rails.application.config.session_store :cookie_store, key: '_OptunaExplorer_session', domain: 'example.com'
+  config.hosts.clear
 end
