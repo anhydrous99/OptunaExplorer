@@ -1,0 +1,26 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup System
+        run: sudo apt-get install libsqlite3-dev
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7.1
+      - name: Setup Yarn
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install
+      - name: Build Install
+        run: bundle install --without production
+      - name: Yarn Install
+        run: rails yarn:install
+      - name: Compile Assets
+        run: rails assets:precompile
+      - name: Cucumber Tests
+        run: cucumber
