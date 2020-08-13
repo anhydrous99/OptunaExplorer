@@ -1,6 +1,7 @@
 class TrialsController < ApplicationController
   before_action :set_trial, only: [:show, :set_failed, :destroy]
   before_action :ensure_user_subdomain, :authenticate_user!
+  before_action :ensure_json_request, only: [:create]
 
   # GET /trials
   # GET /trials.json
@@ -47,6 +48,18 @@ class TrialsController < ApplicationController
     end
   end
 
+  # POST /trials
+  def create
+    @trial = Trial.new(trial_params)
+    respond_to do |format|
+      if @trial.save
+        format.json { render :show, status: :created, location: @trial }
+      else
+        format.json { render json: @trial.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -57,5 +70,10 @@ class TrialsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def trial_params
     params.require(:trial).permit(:trial_id, :number, :study_id, :state, :value, :datetime_start, :datetime_complete)
+  end
+
+  def ensure_json_request
+    return if request.format == :ensure_json_request
+    render :nothing => true, :status => 406
   end
 end
