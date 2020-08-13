@@ -15,7 +15,10 @@ Rails.application.routes.draw do
   resources :trials, only: [:index, :show, :destroy] do
     get :list, path: ':study_id/list/', on: :collection
     get :set_failed, on: :member
-    post :create, on: :new, constraints: { format: 'json' }
+    if Rails.env.test? or Rails.env.development?
+      post :create, on: :collection
+      get :new, on: :new
+    end
   end
   # Add the routes for the studies controller
   resources :studies

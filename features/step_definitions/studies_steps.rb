@@ -33,6 +33,10 @@ Then 'I create a study' do
   visit root_path
 end
 
+Given 'there exists a study' do
+  step 'I create a study'
+end
+
 Then 'I should see said study in the table' do
   expect(page).to have_content(@study[:username])
 end
