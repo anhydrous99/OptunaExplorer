@@ -5,7 +5,12 @@ class TrialsController < ApplicationController
   # GET /trials
   # GET /trials.json
   def index
-    @trials = Trial.all
+    if params[:study_id].nil?
+      @trials = Trial.all
+    else
+      @trials = Trial.where study_id: params[:study_id]
+      @current_best_trial = @trials.order("value DESC").first
+    end
     @study_system_attributes = StudySystemAttribute.all
     @study_user_attributes = StudyUserAttribute.all
   end
@@ -17,18 +22,6 @@ class TrialsController < ApplicationController
     @trial_values = TrialValue.where trial_id: @trial.trial_id
     @trial_system_attributes = TrialSystemAttribute.where trial_id: @trial.trial_id
     @trial_user_attributes = TrialUserAttribute.where trial_id: @trial.trial_id
-  end
-
-  def list
-    study_id = params[:study_id]
-    @trials = Trial.where study_id: study_id
-    @study_system_attributes = StudySystemAttribute.where study_id: study_id
-    @study_user_attributes = StudyUserAttribute.where study_id: study_id
-
-    # Get best trial
-    @current_best_trial = @trials.order("value DESC").first
-
-    render 'trials/index'
   end
 
   def set_failed

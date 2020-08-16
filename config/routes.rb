@@ -13,7 +13,6 @@ Rails.application.routes.draw do
 
   # Add the routes for the trials controller
   resources :trials, only: [:index, :show, :destroy] do
-    get :list, path: ':study_id/list/', on: :collection
     get :set_failed, on: :member
     if Rails.env.test? or Rails.env.development?
       post :create, on: :collection

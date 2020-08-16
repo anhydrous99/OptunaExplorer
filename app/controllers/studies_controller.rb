@@ -11,7 +11,7 @@ class StudiesController < ApplicationController
   # GET /studies/1
   # GET /studies/1.json
   def show
-    redirect_to list_trials_path study_id: params[:id]
+    redirect_to trials_path study_id: params[:id]
   end
 
   # GET /studies/new
