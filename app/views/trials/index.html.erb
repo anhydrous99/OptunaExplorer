@@ -20,7 +20,9 @@
     <thead>
       <tr>
         <th scope="col">Number<%= get_to_sort 'num', @sorted, @direction %></th>
+        <% if params[:study_id].nil? %>
         <th scope="col">Study<%= get_to_sort 'study', @sorted, @direction %></th>
+        <% end %>
         <th scope="col">State<%= get_to_sort 'state', @sorted, @direction %></th>
         <th scope="col">Value<%= get_to_sort 'value', @sorted, @direction %></th>
         <th scope="col">Datetime start<%= get_to_sort 'datetime_start', @sorted, @direction %></th>
@@ -33,7 +35,9 @@
       <% @trials.each do |trial| %>
         <tr>
           <th scope="row"><%= trial.number %></th>
+          <% if params[:study_id].nil? %>
           <td><%= trial.study_id %></td>
+          <% end %>
           <td><%= trial.state %></td>
           <td><%= trial.value %></td>
           <td><%= trial.datetime_start %></td>

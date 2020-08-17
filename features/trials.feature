@@ -46,3 +46,22 @@ Scenario: Study Memoization
   Then I should see "Trial was successfully modified."
   And I should see "Datetime complete"
   And I should see "Best Trial"
+
+Scenario: When clicking a study, the study column should be missing
+  Given I am a valid user and am logged in
+  Given there exists a study
+  Given there exists a trial
+  Then I go to the studies page
+  And I click the link "Show Details"
+  And I should not see "Study" in the table
+  And I click the link "Trials"
+  And I should see "Study" in the table
+
+Scenario: If no trials, when click a study, the study column should be missing
+  Given I am a valid user and am logged in
+  Given there exists a study
+  Then I go to the studies page
+  And I click the link "Show Details"
+  And I should not see "Study" in the table
+  And I click the link "Trials"
+  And I should see "Study" in the table

@@ -77,3 +77,11 @@ end
 Then 'I click the first link named {string}' do |link_name|
   click_link(link_name, match: :first)
 end
+
+Then 'I should not see {string} in the table' do |text|
+  expect(find('.table')).to_not have_content text
+end
+
+Then 'I should see {string} in the table' do |text|
+  expect(find('.table')).to have_content text
+end
