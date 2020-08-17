@@ -26,8 +26,8 @@ end
 Then 'I create a study' do
   visit studies_path
   click_link 'Create Study'
-  @study = {username: Faker::Internet.username, direction: %w(MAXIMIZE MINIMIZE).sample}
-  fill_in "study_study_name", with: @study[:username]
+  @study = {name: Faker::Internet.username, direction: %w(MAXIMIZE MINIMIZE).sample}
+  fill_in "study_study_name", with: @study[:name]
   select @study[:direction], from: 'study_direction'
   click_button 'Create Study'
   visit root_path
@@ -38,7 +38,7 @@ Given 'there exists a study' do
 end
 
 Then 'I should see said study in the table' do
-  expect(page).to have_content(@study[:username])
+  expect(page).to have_content(@study[:name])
 end
 
 Then 'I should see my mysql url' do

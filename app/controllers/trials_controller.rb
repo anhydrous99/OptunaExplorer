@@ -6,11 +6,36 @@ class TrialsController < ApplicationController
   # GET /trials.json
   def index
     if params[:study_id].nil?
-      @trials = Trial.all
+      trials = Trial.all
     else
-      @trials = Trial.where study_id: params[:study_id]
-      @current_best_trial = @trials.order("value DESC").first
+      trials = Trial.where study_id: params[:study_id]
+      @current_best_trial = trials.order("value DESC").first
     end
+
+    unless params[:field].nil? or params[:direction].nil?
+      @sorted = params[:field]
+      @direction = params[:direction]
+
+      case @sorted
+      when 'idx'
+        trials.order! trial_id: @direction.to_sym
+      when 'num'
+        trials.order! number: @direction.to_sym
+      when 'study'
+        trials.order! study_id: @direction.to_sym
+      when 'state'
+        trials.order! state: @direction.to_sym
+      when 'value'
+        trials.order! value: @direction.to_sym
+      when 'datetime_start'
+        trials.order! datetime_start: @direction.to_sym
+      when 'datetime_complete'
+        trials.order! datetime_complete: @direction.to_sym
+      else
+        trials
+      end
+    end
+    @trials = trials
     @study_system_attributes = StudySystemAttribute.all
     @study_user_attributes = StudyUserAttribute.all
   end

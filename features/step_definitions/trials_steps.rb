@@ -42,3 +42,30 @@ Then 'I should not see the trial' do
   expect(page).to_not have_content(@trial[:value])
   expect(page).to_not have_content(@trial[:datetime_start])
 end
+
+Given 'trials with the following values' do |table|
+  expect(@study).to_not eq(nil)
+  @trials = table.hashes
+  @trials.each do |k|
+    visit new_trial_path
+    expect(current_path).to eq(new_trial_path)
+    fill_in 'trial_number', with: k["Number"]
+    fill_in 'trial_study_id', with: k["Study"]
+    fill_in 'trial_state', with: k["State"]
+    fill_in 'trial_value', with: k["Value"]
+    fill_in 'trial_datetime_start', with: k["Datetime Start"]
+    fill_in 'trial_datetime_complete', with: k["Datetime Complete"]
+    click_button 'Create Trial'
+    expect(page).to have_content('Trial was successfully created.')
+  end
+end
+
+And /^I should see "([^"]*)" before "([^"]*)"$/ do |phrase_1, phrase_2|
+  first_position = page.body.index(phrase_1)
+  second_position = page.body.index(phrase_2)
+  expect(first_position).to be < second_position
+end
+
+Then 'I click the link with id {string}' do |id|
+  click_link id
+end

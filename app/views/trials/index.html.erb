@@ -18,13 +18,13 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Trial</th>
-      <th scope="col">Number</th>
-      <th scope="col">Study</th>
-      <th scope="col">State</th>
-      <th scope="col">Value</th>
-      <th scope="col">Datetime start</th>
-      <th scope="col">Datetime complete</th>
+      <th scope="col">#<%= get_to_sort 'idx', @sorted, @direction %></th>
+      <th scope="col">Number<%= get_to_sort 'num', @sorted, @direction %></th>
+      <th scope="col">Study<%= get_to_sort 'study', @sorted, @direction %></th>
+      <th scope="col">State<%= get_to_sort 'state', @sorted, @direction %></th>
+      <th scope="col">Value<%= get_to_sort 'value', @sorted, @direction %></th>
+      <th scope="col">Datetime start<%= get_to_sort 'datetime_start', @sorted, @direction %></th>
+      <th scope="col">Datetime complete<%= get_to_sort 'datetime_complete', @sorted, @direction %></th>
       <th scope="col" colspan="3"></th>
     </tr>
   </thead>
