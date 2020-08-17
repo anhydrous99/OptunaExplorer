@@ -15,37 +15,39 @@
   <br>
 <% end %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#<%= get_to_sort 'idx', @sorted, @direction %></th>
-      <th scope="col">Number<%= get_to_sort 'num', @sorted, @direction %></th>
-      <th scope="col">Study<%= get_to_sort 'study', @sorted, @direction %></th>
-      <th scope="col">State<%= get_to_sort 'state', @sorted, @direction %></th>
-      <th scope="col">Value<%= get_to_sort 'value', @sorted, @direction %></th>
-      <th scope="col">Datetime start<%= get_to_sort 'datetime_start', @sorted, @direction %></th>
-      <th scope="col">Datetime complete<%= get_to_sort 'datetime_complete', @sorted, @direction %></th>
-      <th scope="col" colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @trials.each do |trial| %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
       <tr>
-        <th scope="row"><%= trial.trial_id %></th>
-        <td><%= trial.number %></td>
-        <td><%= trial.study_id %></td>
-        <td><%= trial.state %></td>
-        <td><%= trial.value %></td>
-        <td><%= trial.datetime_start %></td>
-        <td><%= trial.datetime_complete %></td>
-        <td><%= link_to 'Show', trial, class: 'btn btn-outline-dark btn-block' %></td>
-        <td><%= link_to 'Set Failed',  set_failed_trial_path(trial), class: 'btn btn-outline-warning btn-block' %></td>
-        <td><%= link_to 'Destroy', trial, class: 'btn btn-outline-danger btn-block', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th scope="col">#<%= get_to_sort 'idx', @sorted, @direction %></th>
+        <th scope="col">Number<%= get_to_sort 'num', @sorted, @direction %></th>
+        <th scope="col">Study<%= get_to_sort 'study', @sorted, @direction %></th>
+        <th scope="col">State<%= get_to_sort 'state', @sorted, @direction %></th>
+        <th scope="col">Value<%= get_to_sort 'value', @sorted, @direction %></th>
+        <th scope="col">Datetime start<%= get_to_sort 'datetime_start', @sorted, @direction %></th>
+        <th scope="col">Datetime complete<%= get_to_sort 'datetime_complete', @sorted, @direction %></th>
+        <th scope="col" colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @trials.each do |trial| %>
+        <tr>
+          <th scope="row"><%= trial.trial_id %></th>
+          <td><%= trial.number %></td>
+          <td><%= trial.study_id %></td>
+          <td><%= trial.state %></td>
+          <td><%= trial.value %></td>
+          <td><%= trial.datetime_start %></td>
+          <td><%= trial.datetime_complete %></td>
+          <td><%= link_to 'Show', trial, class: 'btn btn-outline-dark btn-block' %></td>
+          <td><%= link_to 'Set Failed',  set_failed_trial_path(trial), class: 'btn btn-outline-warning btn-block' %></td>
+          <td><%= link_to 'Destroy', trial, class: 'btn btn-outline-danger btn-block', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <% unless @study_system_attributes.nil? or @study_system_attributes.empty? %>
   <h4>Study System Attributes</h4>
