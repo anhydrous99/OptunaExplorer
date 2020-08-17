@@ -17,8 +17,6 @@ class TrialsController < ApplicationController
       @direction = params[:direction]
 
       case @sorted
-      when 'idx'
-        trials.order! trial_id: @direction.to_sym
       when 'num'
         trials.order! number: @direction.to_sym
       when 'study'

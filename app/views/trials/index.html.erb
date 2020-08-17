@@ -19,7 +19,6 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">#<%= get_to_sort 'idx', @sorted, @direction %></th>
         <th scope="col">Number<%= get_to_sort 'num', @sorted, @direction %></th>
         <th scope="col">Study<%= get_to_sort 'study', @sorted, @direction %></th>
         <th scope="col">State<%= get_to_sort 'state', @sorted, @direction %></th>
@@ -33,8 +32,7 @@
     <tbody>
       <% @trials.each do |trial| %>
         <tr>
-          <th scope="row"><%= trial.trial_id %></th>
-          <td><%= trial.number %></td>
+          <th scope="row"><%= trial.number %></th>
           <td><%= trial.study_id %></td>
           <td><%= trial.state %></td>
           <td><%= trial.value %></td>

@@ -18,7 +18,6 @@ Scenario Outline: Sort Index, Number, Datetime Start, and Datetime Complete
 
   Examples:
    | field             |
-   | idx               |
    | num               |
    | datetime_start    |
    | datetime_complete |

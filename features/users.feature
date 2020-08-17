@@ -15,11 +15,11 @@ Scenario Outline: Creating a new account
   When I click the first link in the email
   Then I should see "Your email address has been successfully confirmed."
   Examples:
-  | username    | email                 | password      |
-  | tstuser     | asdf@asdf.com         | asdfasdf      |
-  | anhydrous99 | anhydrous99@gmail.com | test_password |
-  | gravel      | gravel@outlook.com    | HBfi451kn3n3  |
-  | 81818       | d9fs9e@live.com       | Ob9i2#RnVqps  |
+  | username  | email               | password      |
+  | tstuser   | asdf@asdf.com       | asdfasdf      |
+  | anhydrous | anhydrous@gmail.com | test_password |
+  | gravel    | gravel@outlook.com  | HBfi451kn3n3  |
+  | 81818     | d9fs9e@live.com     | Ob9i2#RnVqps  |
 
 Scenario: Resend Confirmation Email
   Given I am not authenticated
@@ -43,9 +43,9 @@ Scenario Outline: Login with username
   And I press "Log in"
   Then I should see "Signed in successfully."
   Examples:
-  | username    | password      |
-  | tstuser     | asdfasdf      |
-  | anhydrous99 | test_password |
+  | username  | password      |
+  | tstuser   | asdfasdf      |
+  | anhydrous | test_password |
 
 Scenario Outline: Login with username
   Given a valid user with email "<email>" and password "<password>"
@@ -55,9 +55,9 @@ Scenario Outline: Login with username
   And I press "Log in"
   Then I should see "Signed in successfully."
   Examples:
-  | email                 | password      |
-  | asdf@asdf.com         | asdfasdf      |
-  | anhydrous99@gmail.com | test_password |
+  | email               | password      |
+  | asdf@asdf.com       | asdfasdf      |
+  | anhydrous@gmail.com | test_password |
 
 Scenario: Forgot your password
   Given a valid user with email "tst@example.com" and password "asdfasdf"
