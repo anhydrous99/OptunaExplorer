@@ -3,7 +3,6 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Id</th>
       <th scope="col">Study Name</th>
       <th scope="col">Direction</th>
       <th scope="col" colspan="3"></th>
@@ -13,7 +12,6 @@
   <tbody>
     <% @studies.each do |study| %>
       <tr>
-        <th scope="row"><%= study.study_id %></th>
         <td><%= study.study_name %></td>
         <td><%= study.direction %></td>
         <td><%= link_to 'Show Details', trials_path(study_id: study.id), class: 'btn btn-outline-dark btn-block' %></td>
