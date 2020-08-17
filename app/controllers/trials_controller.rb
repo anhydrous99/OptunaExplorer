@@ -7,7 +7,9 @@ class TrialsController < ApplicationController
   def index
     if params[:study_id].nil?
       trials = Trial.all
+      session.delete(:study_id)
     else
+      session[:study_id] = params[:study_id]
       trials = Trial.where study_id: params[:study_id]
       @current_best_trial = trials.order("value DESC").first
     end
@@ -50,16 +52,23 @@ class TrialsController < ApplicationController
   def set_failed
     @trial.state = 'FAIL'
     @trial.save
-    redirect_to trials_path, notice: 'Trial was successfully modified.'
+    notice = 'Trial was successfully modified.'
+    if session[:study_id].nil?
+      redirect_to trials_path, notice: notice
+    else
+      redirect_to trials_path(study_id: session[:study_id]), notice: notice
+    end
   end
 
   # DELETE /trials/1
   # DELETE /trials/1.json
   def destroy
     @trial.destroy_sub
-    respond_to do |format|
-      format.html { redirect_to trials_url, notice: 'Trial was successfully destroyed.' }
-      format.json { head :no_content }
+    notice = 'Trial was successfully destroyed.'
+    if session[:study_id].nil?
+      redirect_to trials_url, notice: notice
+    else
+      redirect_to trials_url(study_id: session[:study_id]), notice: notice
     end
   end
 
@@ -71,14 +80,15 @@ class TrialsController < ApplicationController
   # POST /trials
   def create
     @trial = Trial.new(trial_params)
-    respond_to do |format|
-      if @trial.save
-        format.html { redirect_to @trial, notice: 'Trial was successfully created.' }
-        format.json { render :show, status: :created, location: @trial }
+    if @trial.save
+      notice = 'Trial was successfully created.'
+      if session[:study_id].nil?
+        redirect_to trial_path(@trial), notice: notice
       else
-        format.html { render :new }
-        format.json { render json: @trial.errors, status: :unprocessable_entity }
+        redirect_to trial_path(@trial, study_id: session[:study_id]), notice: notice
       end
+    else
+      render :new
     end
   end
 

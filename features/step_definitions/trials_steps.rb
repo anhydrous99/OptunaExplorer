@@ -69,3 +69,11 @@ end
 Then 'I click the link with id {string}' do |id|
   click_link id
 end
+
+Given 'there exists {int} trials' do |n_trials|
+  (1..n_trials).each { step 'there exists a trial' }
+end
+
+Then 'I click the first link named {string}' do |link_name|
+  click_link(link_name, match: :first)
+end

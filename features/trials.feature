@@ -33,3 +33,16 @@ Scenario: Destroy Trial
   Then I click the link "Destroy"
   Then I should see "Trial was successfully destroyed."
   And I should not see the trial
+
+Scenario: Study Memoization
+  Given I am a valid user and am logged in
+  Given there exists a study
+  Given there exists 5 trials
+  Then I go to the studies page
+  And I click the link "Show Details"
+  And I should see "Datetime complete"
+  And I should see "Best Trial"
+  Then I click the first link named "Set Failed"
+  Then I should see "Trial was successfully modified."
+  And I should see "Datetime complete"
+  And I should see "Best Trial"
