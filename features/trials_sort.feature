@@ -52,3 +52,13 @@ Scenario: Sort Value
     And I should see "2020-08-16 00:54:13 UTC" before "2020-08-15 00:54:13 UTC"
     Then I click the link with id "state-sort"
     And I should see "2020-08-15 00:54:13 UTC" before "2020-08-16 00:54:13 UTC"
+
+Scenario: Sorting does not change the number of columns
+  Given I am a valid user and am logged in
+  Given there exists a study
+  Given there exists 5 trials
+  Then I go to the studies page
+  Then I click the link "Show Details"
+  And I should not see "Study" in the table
+  Then I click the link with id "value-sort"
+  And I should not see "Study" in the table
