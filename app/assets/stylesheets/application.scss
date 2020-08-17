@@ -15,14 +15,12 @@
  *
  */
 
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: red;
-  color: white;
-  text-align: center;
+body, .sticky-footer-wrapper {
+  min-height: calc(100vh - 80px);
+}
+
+.flex-fill {
+  flex:1 1 auto;
 }
 
 .table thead th {

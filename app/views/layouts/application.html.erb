@@ -35,15 +35,15 @@
   <br>
   <% end %>
 
-  <div class="container">
+  <div class="d-flex flex-column sticky-footer-wrapper">
+  <main class="container flex-fill">
     <%= yield %>
-  </div>
-
-  <br>
-  <footer class="footer py-4 bg-dark text-light">
+  </main>
+  <footer class="py-4 bg-dark text-light">
     <div class="container text-left">
       <small>Copyright &copy; Optuna Explorer</small>
     </div>
   </footer>
+  </div>
   </body>
 </html>
