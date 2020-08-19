@@ -5,18 +5,37 @@
     who want to distribute their hyper-parameter optimization but don't want to go through the trouble of setting
     up a database server.</p>
     <hr class="my-4">
-    <p>Simply sign-up, confirm your email, place the Database url in your Optuna code, and you are reading to go.</p>
-    Here is a small snippet on how to load the study using the database sql url provided:
+    <h2>Usage</h2>
+    Instructions are only slightly different between operating systems. These instructions are valid for python 3.7
+    but may work with version 3.8.
+    <h3>Installation</h3>
+    In ubuntu, first ensure the package <code class="language-terminal">libmysqlclient-dev</code> is installed
+    then, after installing optuna install the mysqlclient pip package.
+    <pre class="language-terminal"><code>sudo apt install libmysqlclient-dev
+pip install optuna mysqlclient</code></pre>
+    <p class="text-danger">Note: the mysqlclient package from the default conda repo may not work.</p>
+    <h3>Arch and Manjaro</h3>
+    In arch or manjaro, the mysql C-connector was reduced to an AUR package, but the mariadb client works just as well.
+    <pre class="language-terminal"><code>sudo pacman -S mariadb-libs
+pip install optuna mysqlclient</code></pre><h3>Windows</h3>
+    In windows, similarly install via pip.
+    <pre class="language-terminal"><code>pip install optuna mysqlclient</code></pre>
+    <h3>Usage</h3>
+    Using Optuna Explorer is fairly simple instead of using the following trial optimization python code. I'll use
+    the example from the <a href="https://optuna.readthedocs.io/en/stable/tutorial/first.html">optuna documentation</a>.
     <pre class="language-python"><code>import optuna
-study = optuna.load_study(study_name='study name', storage='database url')
-study.optimize(objective)</code></pre>
-    Then simply create your objective function as usual:
-    <pre class="language-python"><code>def objective(trial: optuna.Trial):
-    learning_rate = trial.suggest_loguniform('learning_rate', 3e-4, 0.001)
-    ...</code></pre>
-    Optuna will log in to the database and start optimizing. Be sure to create your study through the web interface.
-    You will be able to create, edit, and destroy studies as well that study's trials. You will be able to see that
-    studies best trial and it's parameters as well as the parameters, values, and attributes of any trial.
+def objective(trial):
+    x = trial.suggest_uniform('x', -10, 10)
+    return (x - 2) ** 2</code></pre>
+    The usual code used to optimize the objective function would be
+    <pre class="language-python"><code>study = optuna.create_study()
+study.optimize(objective, n_trials=100)</code></pre>
+    To use Optuna explorer the following modifications are done after creating ur account and study in the Optuna
+    Explorer webinterface.
+    <pre class="language-python"><code>study = optuna.load_study(study_name='Your study name', storage='mysql:// <-- your mysql url')
+study.optimize(objective, n_trials=100)</code></pre>
+    After running a couple of trials you will notice those trials in the Optuna Explorer webinterface where you can
+    see, edit, and delete the trials. The mysql url is provided to you from the studies page. <br>
   </div>
   <%= render "layouts/support" %>
 </main>
