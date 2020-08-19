@@ -11,12 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :ipaddress %>
-    <%= form.text_field :ipaddress, minlength: '7', maxlength: '15', size: '15', pattern: '^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])' %>
+  <div class="form-group">
+    <%= form.label :ipaddress, 'Add IP Address' %>
+    <%= form.text_field :ipaddress, minlength: '7', maxlength: '15', size: '15',
+                        pattern: '^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])',
+                        class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Add IP Address', class: 'btn btn-dark' %>
   </div>
 <% end %>

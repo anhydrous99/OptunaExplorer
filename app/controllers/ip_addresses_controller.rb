@@ -13,7 +13,7 @@ class IpAddressesController < ApplicationController
     @ip_address = IpAddress.new(ipaddress: IPAddr.new(ip_address_params[:ipaddress]).to_i, user_id: current_user.id)
 
     if @ip_address.save
-      redirect_to ip_addresses_path, notice: 'Ip Address was successfully created.'
+      redirect_to ip_addresses_path, notice: 'IP Address was successfully created.'
     else
       render ip_address_path
     end
@@ -22,7 +22,7 @@ class IpAddressesController < ApplicationController
   # DELETE /ip_addresses/1
   def destroy
     @ip_address.destroy
-    redirect_to ip_addresses_url, notice: 'Ip Address was successfully destroyed.'
+    redirect_to ip_addresses_url, notice: 'IP Address was successfully destroyed.'
   end
 
   private

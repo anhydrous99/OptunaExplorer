@@ -1,25 +1,30 @@
-<p id="notice"><%= notice %></p>
+<h1>IP Address Whitelist</h1>
 
-<h1>Ip Addresses</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Ip Address</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @ip_addresses.each do |ip_address| %>
+<div class="border p-10 col-md-10 justify-content-center">
+  <table class="table table-sm table-striped">
+    <thead>
       <tr>
-        <td><%= IPAddr.new(ip_address.ipaddress, Socket::AF_INET).to_s %></td>
-        <td><%= link_to 'Destroy', ip_address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th scope="col">IP Address</th>
+        <th scope="col"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @ip_addresses.each do |ip_address| %>
+        <tr>
+          <td><%= IPAddr.new(ip_address.ipaddress, Socket::AF_INET).to_s %></td>
+          <td><%= link_to 'Delete', ip_address, class: 'btn btn-outline-danger btn-block', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+</div>
 
 <br>
 
+<div class="border p-10 col-md-10 justify-content-center">
+  <br>
 <%= render 'form', ip_address: @ip_address %>
+  <br>
+</div>
