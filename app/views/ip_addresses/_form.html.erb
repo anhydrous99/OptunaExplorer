@@ -1,0 +1,22 @@
+<%= form_with(model: ip_address, local: true) do |form| %>
+  <% if ip_address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ip_address.errors.count, "error") %> prohibited this ip_address from being saved:</h2>
+
+      <ul>
+        <% ip_address.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ipaddress %>
+    <%= form.text_field :ipaddress, minlength: '7', maxlength: '15', size: '15', pattern: '^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

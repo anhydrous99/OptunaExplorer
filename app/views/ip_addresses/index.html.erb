@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ip Addresses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ip Address</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ip_addresses.each do |ip_address| %>
+      <tr>
+        <td><%= IPAddr.new(ip_address.ipaddress, Socket::AF_INET).to_s %></td>
+        <td><%= link_to 'Destroy', ip_address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= render 'form', ip_address: @ip_address %>
