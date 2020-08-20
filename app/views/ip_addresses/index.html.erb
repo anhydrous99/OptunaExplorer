@@ -13,7 +13,7 @@
       <% @ip_addresses.each do |ip_address| %>
         <tr>
           <td><%= IPAddr.new(ip_address.ipaddress, Socket::AF_INET).to_s %></td>
-          <td><%= link_to 'Delete', ip_address, class: 'btn btn-outline-danger btn-block', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Delete', ip_address, class: 'btn btn-outline-danger btn-block', method: :delete, data: { confirm: 'Are you sure?' }, id: "ip_delete_#{ip_address.id}" %></td>
         </tr>
       <% end %>
     </tbody>
