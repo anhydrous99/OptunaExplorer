@@ -1,6 +1,7 @@
 class TrialsController < ApplicationController
   before_action :set_trial, only: [:show, :set_failed, :destroy]
   before_action :ensure_user_subdomain, :authenticate_user!
+  helper_method :trials_path_helper, :trials_url_helper
 
   # GET /trials
   # GET /trials.json
@@ -53,11 +54,7 @@ class TrialsController < ApplicationController
     @trial.state = 'FAIL'
     @trial.save
     notice = 'Trial was successfully modified.'
-    if session[:study_id].nil?
-      redirect_to trials_path, notice: notice
-    else
-      redirect_to trials_path(study_id: session[:study_id]), notice: notice
-    end
+    redirect_to trials_path_helper, notice: notice
   end
 
   # DELETE /trials/1
@@ -65,11 +62,7 @@ class TrialsController < ApplicationController
   def destroy
     @trial.destroy_sub
     notice = 'Trial was successfully destroyed.'
-    if session[:study_id].nil?
-      redirect_to trials_url, notice: notice
-    else
-      redirect_to trials_url(study_id: session[:study_id]), notice: notice
-    end
+    redirect_to trials_url_helper, notice: notice
   end
 
   # GET /trials/new
@@ -82,11 +75,7 @@ class TrialsController < ApplicationController
     @trial = Trial.new(trial_params)
     if @trial.save
       notice = 'Trial was successfully created.'
-      if session[:study_id].nil?
-        redirect_to trial_path(@trial), notice: notice
-      else
-        redirect_to trial_path(@trial, study_id: session[:study_id]), notice: notice
-      end
+      redirect_to trials_path_helper, notice: notice
     else
       render :new
     end
@@ -102,5 +91,21 @@ class TrialsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def trial_params
     params.require(:trial).permit(:trial_id, :number, :study_id, :state, :value, :datetime_start, :datetime_complete)
+  end
+
+  def trials_path_helper
+    if session[:study_id].nil?
+      trials_path
+    else
+      trials_path(study_id: session[:study_id])
+    end
+  end
+
+  def trials_url_helper
+    if session[:study_id].nil?
+      trials_url
+    else
+      trials_url(study_id: session[:study_id])
+    end
   end
 end

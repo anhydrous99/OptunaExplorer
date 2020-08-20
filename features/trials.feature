@@ -65,3 +65,16 @@ Scenario: If no trials, when click a study, the study column should be missing
   And I should not see "Study" in the table
   And I click the link "Trials"
   And I should see "Study" in the table
+
+Scenario: Remembers study after seeing trials
+  Given I am a valid user and am logged in
+  Given there exists a study
+  Given there exists 5 trials
+  Then I go to the studies page
+  And I click the link "Show Details"
+  And I should see "Datetime complete"
+  And I should see "Best Trial"
+  Then I click the first link named "Show"
+  And I should see "Trial Details"
+  Then I click the link "Back"
+  And I should see "Best Trial"
