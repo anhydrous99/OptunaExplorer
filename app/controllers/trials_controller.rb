@@ -36,7 +36,7 @@ class TrialsController < ApplicationController
         trials
       end
     end
-    @trials = trials
+    @trials = trials.page params[:page]
     @study_system_attributes = StudySystemAttribute.all
     @study_user_attributes = StudyUserAttribute.all
   end

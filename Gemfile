@@ -23,6 +23,8 @@ gem 'devise'
 gem 'recaptcha', require: 'recaptcha/rails'
 # For writing code
 gem 'prism-rails'
+# For pagination of database views
+gem 'kaminari'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

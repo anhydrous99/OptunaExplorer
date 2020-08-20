@@ -50,7 +50,7 @@
     </tbody>
   </table>
 </div>
-
+<%= paginate @trials %>
 <% unless @study_system_attributes.nil? or @study_system_attributes.empty? %>
   <h4>Study System Attributes</h4>
 
@@ -71,9 +71,7 @@
     <% end %>
     </tbody>
   </table>
-
 <% end %>
-
 <% unless @study_user_attributes.nil? or @study_user_attributes.empty? %>
   <h4>Study User Attributes</h4>
 
@@ -94,7 +92,5 @@
     <% end %>
     </tbody>
   </table>
-
 <% end %>
-
 <br>
