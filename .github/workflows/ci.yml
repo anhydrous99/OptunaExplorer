@@ -16,10 +16,13 @@ jobs:
           node-version: 10.19.0
       - name: Install dependencies
         run: |
-          sudo apt install -y libsqlite3-dev build-essential
+          sudo apt install -y libsqlite3-dev build-essential ufw
           gem install bundler
           bundle install --without production
           yarn install
+          sudo ufw default allow incoming
+          sudo ufw default allow outgoing
+          sudo ufw enable
       - name: Cucumber Tests
         run: cucumber
       - name: RSpec Tests

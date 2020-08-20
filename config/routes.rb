@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
   get 'home/index'
-  # Add the routes for devise
+  # Routes for the Devise, User, Controllers
   devise_for :users, controllers: {
       registrations: 'users/registrations',
       confirmations: 'users/confirmations'
   }
-
-  # Add an extra route for sign_out, redirect_to turns the delete to get
   devise_scope :user do
     get '/users/sign_out', to: 'devise/sessions#destroy'
   end
 
-  # Add the routes for the trials controller
+  # Routes for the ip address controller
+  resources :ip_addresses, only: [:index, :create, :destroy]
+
+  # Routes for the trials controller
   resources :trials, only: [:index, :show, :destroy] do
     get :set_failed, on: :member
     if Rails.env.test? or Rails.env.development?
@@ -19,7 +20,8 @@ Rails.application.routes.draw do
       get :new, on: :new
     end
   end
-  # Add the routes for the studies controller
+
+  # Routes for the studies controller
   resources :studies
 
   root to: 'home#index'

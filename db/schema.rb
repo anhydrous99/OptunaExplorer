@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_01_201925) do
+ActiveRecord::Schema.define(version: 2020_08_19_020410) do
+
+  create_table "ip_addresses", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "ipaddress"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_ip_addresses_on_user_id"
+  end
 
   create_table "studies", primary_key: "study_id", force: :cascade do |t|
     t.string "study_name", null: false
@@ -85,4 +93,5 @@ ActiveRecord::Schema.define(version: 2020_08_01_201925) do
     t.string "library_version"
   end
 
+  add_foreign_key "ip_addresses", "users"
 end

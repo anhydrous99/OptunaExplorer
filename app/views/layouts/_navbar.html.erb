@@ -10,14 +10,17 @@
 
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link " href="<%= root_path %>">Home</a>
+        <%= link_to 'Home', root_path, class: 'nav-link' %>
       </li>
       <% if user_signed_in? %>
       <li class="nav-item">
-        <a class="nav-link" href="<%= studies_path %>">Studies</a>
+        <%= link_to 'Studies', studies_path, class: 'nav-link' %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<%= trials_path %>">Trials</a>
+        <%= link_to 'Trials', trials_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Whitelist', ip_addresses_path, class: 'nav-link' %>
       </li>
       <% end %>
     </ul>

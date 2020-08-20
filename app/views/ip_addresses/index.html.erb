@@ -1,0 +1,29 @@
+<h1>IP Address Whitelist</h1>
+
+<div class="border p-10 col-md-10 justify-content-center">
+  <table class="table table-sm table-striped">
+    <thead>
+      <tr>
+        <th scope="col">IP Address</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @ip_addresses.each do |ip_address| %>
+        <tr>
+          <td><%= IPAddr.new(ip_address.ipaddress, Socket::AF_INET).to_s %></td>
+          <td><%= link_to 'Delete', ip_address, class: 'btn btn-outline-danger btn-block', method: :delete, data: { confirm: 'Are you sure?' }, id: "ip_delete_#{ip_address.id}" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<div class="border p-10 col-md-10 justify-content-center">
+  <br>
+<%= render 'form', ip_address: @ip_address %>
+  <br>
+</div>
