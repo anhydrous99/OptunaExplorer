@@ -16,7 +16,7 @@ class Trial < ApplicationRecord
   end
 
   def self.to_csv
-    attributes = %w{trial_id number study_id state value datetime_start datetime_complete}
+    attributes = %w{trial_id number study state value datetime_start datetime_complete}
 
     CSV.generate headers: true do |csv|
       csv << attributes
@@ -25,5 +25,9 @@ class Trial < ApplicationRecord
         csv << attributes.map{ |attr| trial.send(attr) }
       end
     end
+  end
+
+  def self.study
+    Study.find(study_id).study_name
   end
 end

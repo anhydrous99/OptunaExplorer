@@ -84,14 +84,38 @@ class TrialsController < ApplicationController
   # GET /trials/download
   def download
     if params[:study_id].nil?
-      @trials = Trial.all
+      trials = Trial.all
       session.delete(:study_id)
     else
       session[:study_id] = params[:study_id]
-      @trials = Trial.where study_id: params[:study_id]
+      trials = Trial.where study_id: params[:study_id]
     end
 
-    send_data @trials.to_csv, filename: "generated-trials-#{Time.now.to_i}.csv"
+    respond_to do |format|
+      format.csv do
+        send_data trials.to_csv, filename: "generated-trials-#{Time.now.to_i}.csv", :type => :csv, :disposition => 'attachment', :layout => false
+      end
+      format.json do
+        data = trials.map do |trial|
+          {
+              trial_id: trial.trial_id,
+              number: trial.number,
+              study_id: trial.study_id,
+              study: trial.study,
+              state: trial.state,
+              value: trial.value,
+              datetime_start: trial.datetime_start,
+              datetime_complete: trial.datetime_complete,
+              parameters: TrialParam.where(trial_id: trial.trial_id),
+              system_attributes: TrialSystemAttribute.where(trial_id: trial.trial_id),
+              user_attributes: TrialUserAttribute.where(trial_id: trial.trial_id),
+              trial_values: TrialValue.where(trial_id: trial.trial_id)
+          }
+        end
+        send_data data.to_json, filename: "generated-trials-#{Time.now.to_i}.json", :type => :json, :disposition => 'attachment', :layout => false
+      end
+      format.html
+    end
   end
 
   private

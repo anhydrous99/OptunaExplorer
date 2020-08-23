@@ -25,11 +25,19 @@ module TrialsHelper
     end
   end
 
-  def trials_download_helper
+  def trials_download_helper(json=false)
     if session[:study_id].nil?
-      download_trials_path
+      if json
+        download_trials_path json: true, format: 'json'
+      else
+        download_trials_path json: false, format: 'csv'
+      end
     else
-      download_trials_path study_id: session[:study_id]
+      if json
+        download_trials_path json: true, study_id: session[:study_id], format: 'json'
+      else
+        download_trials_path json: false, study_id: session[:study_id], format: 'csv'
+      end
     end
   end
 end

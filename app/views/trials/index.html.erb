@@ -56,7 +56,8 @@
     <%= paginate @trials %>
   </div>
   <div class="ml-auto">
-    <%= link_to 'Download', trials_download_helper, class: 'btn btn-primary' %>
+    <%= link_to 'Download JSON', trials_download_helper(true), class: 'btn btn-primary' %>
+    <%= link_to 'Download CSV', trials_download_helper(false), class: 'btn btn-primary' %>
   </div>
 </div>
 
