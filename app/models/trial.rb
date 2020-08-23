@@ -22,12 +22,9 @@ class Trial < ApplicationRecord
       csv << attributes
 
       all.each do |trial|
-        csv << attributes.map{ |attr| trial.send(attr) }
+        csv << [trial.trial_id, trial.number, trial.study_id, trial.study.study_name, trial.state, trial.value,
+                trial.datetime_start, trial.datetime_complete]
       end
     end
-  end
-
-  def self.study
-    Study.find(study_id)[:study_name]
   end
 end
