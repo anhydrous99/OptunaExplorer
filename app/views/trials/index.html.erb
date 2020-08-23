@@ -50,7 +50,16 @@
     </tbody>
   </table>
 </div>
-<%= paginate @trials %>
+
+<div class="d-flex">
+  <div>
+    <%= paginate @trials %>
+  </div>
+  <div class="ml-auto">
+    <%= link_to 'Download', trials_download_helper, class: 'btn btn-primary' %>
+  </div>
+</div>
+
 <% unless @study_system_attributes.nil? or @study_system_attributes.empty? %>
   <h4>Study System Attributes</h4>
 

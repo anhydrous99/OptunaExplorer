@@ -81,6 +81,19 @@ class TrialsController < ApplicationController
     end
   end
 
+  # GET /trials/download
+  def download
+    if params[:study_id].nil?
+      @trials = Trial.all
+      session.delete(:study_id)
+    else
+      session[:study_id] = params[:study_id]
+      @trials = Trial.where study_id: params[:study_id]
+    end
+
+    send_data @trials.to_csv, filename: "generated-trials-#{Time.now.to_i}.csv"
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

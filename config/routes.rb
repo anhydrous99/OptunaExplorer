@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # Routes for the trials controller
   resources :trials, only: [:index, :show, :destroy] do
     get :set_failed, on: :member
+    get :download, on: :collection
     if Rails.env.test? or Rails.env.development?
       post :create, on: :collection
       get :new, on: :new

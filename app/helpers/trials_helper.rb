@@ -24,5 +24,13 @@ module TrialsHelper
       end
     end
   end
+
+  def trials_download_helper
+    if session[:study_id].nil?
+      download_trials_path
+    else
+      download_trials_path study_id: session[:study_id]
+    end
+  end
 end
 
