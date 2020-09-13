@@ -1,13 +1,10 @@
 <main role="main" class="container">
   <div class="jumbotron col-md-10">
     <h1 class="display-4">Optuna Explorer</h1>
-    <p class="lead">A free database service for Machine Learning Developers who use the <a href="">Optuna</a> library
-    who want to distribute their hyper-parameter optimization but don't want to go through the trouble of setting
-    up a database server.</p>
+    <p class="lead">This website is a free database service for Machine Learning Developers who use the Optuna library who want to distribute their hyper-parameter optimization but don't want to go through the trouble of setting up a database server.</p>
     <hr class="my-4">
     <h2>Usage</h2>
-    Instructions are only slightly different between operating systems. These instructions are valid for python 3.7
-    but may work with version 3.8.
+    Instructions are only slightly different between operating systems. These instructions are valid for Python version 3.7 but may work with version 3.8.
     <h3>Installation</h3>
     In ubuntu, first ensure the package <code class="language-terminal">libmysqlclient-dev</code> is installed
     then, after installing optuna install the mysqlclient pip package.
@@ -20,9 +17,12 @@ pip install optuna mysqlclient</code></pre>
 pip install optuna mysqlclient</code></pre><h3>Windows</h3>
     In windows, similarly install via pip.
     <pre class="language-terminal"><code>pip install optuna mysqlclient</code></pre>
+    <h3>Signing Up</h3>
+    You can sign up by simply clicking the Sign-Up button on the upper nav bar, input your desired username, email, and password. Click the reCAPTCHA and do any challenge it might ask to prove you are not a robot. After clicking Sign-Up, a confirmation email will be sent to you.
+    <h3>Creating a Study</h3>
+    After signing up, confirming your account, and signing in, click the Studies link on the navbar, then click "Create Study." Name your study and set the direction of optimization, whether to minimize or maximize.
     <h3>Usage</h3>
-    Using Optuna Explorer is fairly simple instead of using the following trial optimization python code. I'll use
-    the example from the <a href="https://optuna.readthedocs.io/en/stable/tutorial/first.html">optuna documentation</a>.
+    Using OptunaExplorer is reasonably straightforward. I'll use the example from the <a href="https://optuna.readthedocs.io/en/stable/tutorial/first.html">Optuna documentation</a>.
     <pre class="language-python"><code>import optuna
 def objective(trial):
     x = trial.suggest_uniform('x', -10, 10)
@@ -34,8 +34,7 @@ study.optimize(objective, n_trials=100)</code></pre>
     Explorer webinterface.
     <pre class="language-python"><code>study = optuna.load_study(study_name='Your study name', storage='mysql:// <-- your mysql url')
 study.optimize(objective, n_trials=100)</code></pre>
-    After running a couple of trials you will notice those trials in the Optuna Explorer webinterface where you can
-    see, edit, and delete the trials. The mysql url is provided to you from the studies page. <br>
+    After running a couple of trials, you will notice those trials in the OptunaExplorer web interface to see, edit, and delete Trials. The MySQL URL is on the studies page <br>
   </div>
   <%= render "layouts/support" %>
 </main>
